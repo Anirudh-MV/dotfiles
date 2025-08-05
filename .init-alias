@@ -1,0 +1,51 @@
+
+# gcp alias
+alias gc=gcloud
+
+# kubectl aliases
+#
+alias kgn='kubectl get nodes'
+alias kgp='kubectl get pods'
+alias kgpa='kubectl get pods -- all-namespaces'
+alias kgs='kubectl get services'
+alias kgd='kubectl get deployments'
+alias k='kubectl'
+alias klpd='kubectl logs --previous $@ | less'
+
+# nvm alias
+nvmv() {
+  # Try to use the specified version, suppressing all output.
+  # The &> operator is a zsh shorthand for >/dev/null 2>&1
+  nvm use "$@" &> /dev/null
+
+  # Check if the last command failed.
+  if [[ $? -ne 0 ]]; then
+    # If 'nvm use' failed, print a message in yellow and try to install.
+    # We use zsh's built-in colors for a cleaner look.
+    print -P "%F{yellow}Node.js version not found. Attempting to install...%f"
+    nvm install "$@" && nvm use "$@"
+  else
+    # If the first 'nvm use' succeeds, print its output.
+    # This provides feedback when you switch to an already installed version.
+    nvm use "$@"
+  fi
+}
+
+npmi() {
+  nvmv && npm i
+}
+
+alias npmcache="npm cache clean --force"
+
+# override vim to nvim
+alias vim=nvim
+
+# alias for cursor
+alias cr=cursor
+
+
+# git helpers
+alias gitbranch="git branch --sort=-committerdate"
+
+# docker compose
+alias dcu="docker-compose up"
