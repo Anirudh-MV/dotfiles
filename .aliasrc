@@ -35,6 +35,13 @@ npmi() {
   nvmv && npm i
 }
 
+# Use the following code to disable nvm in VS Code terminal.
+# if [[ "x${TERM_PROGRAM}" = "xvscode" ]]; then 
+#   echo 'Detected VS Code Environment, nvm is disabled. Execute `load-nvm` to gain access to nvm';
+# else 
+#   load-nvm
+# fi
+
 alias npmcache="npm cache clean --force"
 
 # override vim to nvim
@@ -46,6 +53,7 @@ alias cr=cursor
 
 # git helpers
 alias gitbranch="git branch --sort=-committerdate"
+alias gc-="git checkout -"
 
 # docker compose
 alias dcu="docker-compose up"
